@@ -1,9 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const indexController = require('../controllers/index');
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/add', indexController.addition);
+
+router.get('/subtract', indexController.subtraction);
+
+router.get('/multiply', indexController.multiplication);
+
+router.get('/divide', indexController.division);
+
+router.get('/history', indexController.history);
 
 module.exports = router;
