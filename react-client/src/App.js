@@ -15,7 +15,7 @@ const App = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `http://localhost:5000/history?apiKey=${process.env.REACT_APP_API_KEY}`
+          `/history?apiKey=${process.env.REACT_APP_API_KEY}`
         );
         setHistory(res.data.historyArray.reverse());
         setLoading(false);
@@ -29,7 +29,7 @@ const App = () => {
   const calculate = async (operation, firstValue, secondValue) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/${operation}?apiKey=${process.env.REACT_APP_API_KEY}&firstValue=${firstValue}&secondValue=${secondValue}`
+        `/${operation}?apiKey=${process.env.REACT_APP_API_KEY}&firstValue=${firstValue}&secondValue=${secondValue}`
       );
       setOutput(res.data.result);
     } catch (error) {
