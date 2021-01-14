@@ -15,6 +15,7 @@ const Calculator = ({ calculate, output, setOutput }) => {
     const value = event.target.value;
     switch (value) {
       case '=': {
+        setEqual(false);
         let [firstValue, secondValue] = input.split(/[+*/-]/g);
         calculate(operation, firstValue, secondValue);
         break;
@@ -48,34 +49,43 @@ const Calculator = ({ calculate, output, setOutput }) => {
   };
 
   return (
-    <div className='container-fluid card bg-light mb-3'>
+    <div className='container-fluid card text-white bg-dark mb-3'>
       <Screen question={input} answer={output} />
       <div className='container p-4'>
-        <div className='row justify-content-between'>
+        <div className='row justify-content-between mx-1'>
           <Operator label={'Cls'} handleClick={handleClick} active={true} />
           <Operator label={'/'} handleClick={handleClick} active={active} />
         </div>
-        <div className='row justify-content-center'>
+        <div className='row justify-content-around'>
           <Number label={'1'} handleClick={handleClick} />
           <Number label={'2'} handleClick={handleClick} />
           <Number label={'3'} handleClick={handleClick} />
           <Operator label={'+'} handleClick={handleClick} active={active} />
         </div>
-        <div className='row justify-content-center'>
+        <div className='row justify-content-around'>
           <Number label={'4'} handleClick={handleClick} />
           <Number label={'5'} handleClick={handleClick} />
           <Number label={'6'} handleClick={handleClick} />
           <Operator label={'-'} handleClick={handleClick} active={active} />
         </div>
-        <div className='row justify-content-center'>
+        <div className='row justify-content-around'>
           <Number label={'7'} handleClick={handleClick} />
           <Number label={'8'} handleClick={handleClick} />
           <Number label={'9'} handleClick={handleClick} />
           <Operator label={'*'} handleClick={handleClick} active={active} />
         </div>
-        <div className='row justify-content-center'>
+        <div className='row justify-content-between mx-1'>
           <Number label={'0'} handleClick={handleClick} />
-          <Operator label={'='} handleClick={handleClick} active={equal} />
+          <input
+            type='button'
+            className={
+              equal
+                ? 'btn btn-success m-2 p-4 font-weight-bold col-9 col-md-8'
+                : 'btn btn-success m-2 p-4 font-weight-bold col-9 col-md-8 disabled'
+            }
+            onClick={equal ? handleClick : function () {}}
+            value={'='}
+          />
         </div>
       </div>
     </div>
