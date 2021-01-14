@@ -80,8 +80,8 @@ const Calculator = ({ calculate, output, setOutput }) => {
             type='button'
             className={
               equal
-                ? 'btn btn-success m-2 p-4 font-weight-bold col-9 col-md-8'
-                : 'btn btn-success m-2 p-4 font-weight-bold col-9 col-md-8 disabled'
+                ? 'btn btn-success m-2 p-4 font-weight-bold col-8'
+                : 'btn btn-success m-2 p-4 font-weight-bold col-8 disabled'
             }
             onClick={equal ? handleClick : function () {}}
             value={'='}
