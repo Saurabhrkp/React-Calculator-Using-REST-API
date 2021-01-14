@@ -17,7 +17,7 @@ const App = () => {
         const res = await axios.get(
           `http://localhost:5000/history?apiKey=${process.env.REACT_APP_API_KEY}`
         );
-        setHistory(res.data.historyArray);
+        setHistory(res.data.historyArray.reverse());
         setLoading(false);
       } catch (error) {
         console.error(error);
