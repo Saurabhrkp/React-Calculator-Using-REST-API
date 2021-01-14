@@ -4,7 +4,7 @@ const Number = (props) => {
   return (
     <input
       type='button'
-      className='btn btn-outline-info m-2 p-4 col-2 font-weight-bold'
+      className='btn btn-info m-2 p-4 col-2 font-weight-bold'
       onClick={props.handleClick}
       value={props.label}
     />
