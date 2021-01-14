@@ -6,7 +6,7 @@ import History from './components/History';
 import Calculator from './components/Calculator';
 
 const App = () => {
-  const [output, setOutput] = useState('');
+  const [output, setOutput] = useState(' ');
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState([]);
 
@@ -33,21 +33,24 @@ const App = () => {
       );
       setOutput(res.data.result);
     } catch (error) {
+      setOutput(' ');
       console.error(error);
     }
   };
 
   return (
-    <div className='container row vh-100 justify-content-center align-content-center'>
-      <div className='col'>
-        <Calculator
-          output={output}
-          calculate={calculate}
-          setOutput={setOutput}
-        />
-      </div>
-      <div className='col'>
-        <History history={history} loading={loading} />
+    <div className='container'>
+      <div className='row mt-5'>
+        <div className='col-auto col-sm-12 col-md-6 col-lg-6'>
+          <Calculator
+            output={output}
+            calculate={calculate}
+            setOutput={setOutput}
+          />
+        </div>
+        <div className='col col-sm-12 col-md-6 col-lg-6'>
+          <History history={history} loading={loading} />
+        </div>
       </div>
     </div>
   );

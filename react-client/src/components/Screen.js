@@ -3,7 +3,7 @@ import IO from './IO';
 
 const Screen = (props) => {
   return (
-    <div className=''>
+    <div className='form-group row justify-content-center mt-5'>
       <IO value={props.question} />
       <IO value={props.answer} />
     </div>

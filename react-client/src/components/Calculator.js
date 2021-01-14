@@ -48,29 +48,35 @@ const Calculator = ({ calculate, output, setOutput }) => {
   };
 
   return (
-    <div className='container justify-content-center align-content-center my-auto'>
+    <div className='container-fluid card bg-light mb-3'>
       <Screen question={input} answer={output} />
-      <div className='row'>
-        <Number label={'1'} handleClick={handleClick} />
-        <Number label={'2'} handleClick={handleClick} />
-        <Number label={'3'} handleClick={handleClick} />
-        <Number label={'4'} handleClick={handleClick} />
-        <Operator label={'-'} handleClick={handleClick} active={active} />
-        <Operator label={'+'} handleClick={handleClick} active={active} />
-      </div>
-      <div className='row'>
-        <Number label={'5'} handleClick={handleClick} />
-        <Number label={'6'} handleClick={handleClick} />
-        <Number label={'7'} handleClick={handleClick} />
-        <Number label={'8'} handleClick={handleClick} />
-        <Operator label={'*'} handleClick={handleClick} active={active} />
-        <Operator label={'/'} handleClick={handleClick} active={active} />
-      </div>
-      <div className='row'>
-        <Number label={'9'} handleClick={handleClick} />
-        <Number label={'0'} handleClick={handleClick} />
-        <Operator label={'Cls'} handleClick={handleClick} active={true} />
-        <Operator label={'='} handleClick={handleClick} active={equal} />
+      <div className='container p-4'>
+        <div className='row justify-content-between'>
+          <Operator label={'Cls'} handleClick={handleClick} active={true} />
+          <Operator label={'/'} handleClick={handleClick} active={active} />
+        </div>
+        <div className='row justify-content-center'>
+          <Number label={'1'} handleClick={handleClick} />
+          <Number label={'2'} handleClick={handleClick} />
+          <Number label={'3'} handleClick={handleClick} />
+          <Operator label={'+'} handleClick={handleClick} active={active} />
+        </div>
+        <div className='row justify-content-center'>
+          <Number label={'4'} handleClick={handleClick} />
+          <Number label={'5'} handleClick={handleClick} />
+          <Number label={'6'} handleClick={handleClick} />
+          <Operator label={'-'} handleClick={handleClick} active={active} />
+        </div>
+        <div className='row justify-content-center'>
+          <Number label={'7'} handleClick={handleClick} />
+          <Number label={'8'} handleClick={handleClick} />
+          <Number label={'9'} handleClick={handleClick} />
+          <Operator label={'*'} handleClick={handleClick} active={active} />
+        </div>
+        <div className='row justify-content-center'>
+          <Number label={'0'} handleClick={handleClick} />
+          <Operator label={'='} handleClick={handleClick} active={equal} />
+        </div>
       </div>
     </div>
   );
