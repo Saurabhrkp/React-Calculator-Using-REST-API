@@ -1,20 +1,47 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-import Button from './Button';
 import Screen from './Screen';
+import Number from './Number';
+import Operator from './Operator';
 
-const Calculator = ({ input, output }) => {
+const Calculator = ({ calculate, output, setOutput }) => {
+  const [active, setActive] = useState(false);
+  const [equal, setEqual] = useState(false);
+  const [input, setInput] = useState('');
+  const [operation, setOperation] = useState('');
+
   const handleClick = (event) => {
     const value = event.target.value;
     switch (value) {
       case '=': {
+        let [firstValue, secondValue] = input.split(/[+*\/-]/g);
+        calculate(operation, firstValue, secondValue);
         break;
       }
       case 'Cls': {
+        setInput('');
+        setOutput('');
         break;
       }
       default: {
+        if (input.search(/[+*\/-]/g) === -1) {
+          setActive(true);
+        }
+        if (value.match(/[+*\/-]/g)) {
+          if (input.search(/[+*\/-]/g) === -1) {
+            value === '+'
+              ? setOperation('add')
+              : value === '-'
+              ? setOperation('subtract')
+              : value === '*'
+              ? setOperation('multiply')
+              : setOperation('divide');
+          }
+          setActive(false);
+          setEqual(true);
+        }
+        setInput(input + value);
         break;
       }
     }
@@ -24,27 +51,26 @@ const Calculator = ({ input, output }) => {
     <div className='container justify-content-center align-content-center my-auto'>
       <Screen question={input} answer={output} />
       <div className='row'>
-        <Button label={'1'} handleClick={handleClick} type='input' />
-        <Button label={'2'} handleClick={handleClick} type='input' />
-        <Button label={'3'} handleClick={handleClick} type='input' />
-        <Button label={'4'} handleClick={handleClick} type='input' />
-        <Button label={'-'} handleClick={handleClick} type='action' />
-        <Button label={'+'} handleClick={handleClick} type='action' />
+        <Number label={'1'} handleClick={handleClick} />
+        <Number label={'2'} handleClick={handleClick} />
+        <Number label={'3'} handleClick={handleClick} />
+        <Number label={'4'} handleClick={handleClick} />
+        <Operator label={'-'} handleClick={handleClick} active={active} />
+        <Operator label={'+'} handleClick={handleClick} active={active} />
       </div>
       <div className='row'>
-        <Button label={'5'} handleClick={handleClick} type='input' />
-        <Button label={'6'} handleClick={handleClick} type='input' />
-        <Button label={'7'} handleClick={handleClick} type='input' />
-        <Button label={'8'} handleClick={handleClick} type='input' />
-        <Button label={'*'} handleClick={handleClick} type='action' />
-        <Button label={'/'} handleClick={handleClick} type='action' />
+        <Number label={'5'} handleClick={handleClick} />
+        <Number label={'6'} handleClick={handleClick} />
+        <Number label={'7'} handleClick={handleClick} />
+        <Number label={'8'} handleClick={handleClick} />
+        <Operator label={'*'} handleClick={handleClick} active={active} />
+        <Operator label={'/'} handleClick={handleClick} active={active} />
       </div>
       <div className='row'>
-        <Button label={'9'} handleClick={handleClick} type='input' />
-        <Button label={'.'} handleClick={handleClick} type='input' />
-        <Button label={'0'} handleClick={handleClick} type='input' />
-        <Button label={'Cls'} handleClick={handleClick} type='action' />
-        <Button label={'='} handleClick={handleClick} type='action' />
+        <Number label={'9'} handleClick={handleClick} />
+        <Number label={'0'} handleClick={handleClick} />
+        <Operator label={'Cls'} handleClick={handleClick} active={true} />
+        <Operator label={'='} handleClick={handleClick} active={equal} />
       </div>
     </div>
   );
