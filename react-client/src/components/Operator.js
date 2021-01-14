@@ -9,7 +9,7 @@ const Operator = (props) => {
           ? 'btn btn-outline-primary m-2 disabled'
           : 'btn btn-outline-primary m-2'
       }
-      onClick={props.active ? props.handleClick : ''}
+      onClick={props.active ? props.handleClick : function () {}}
       value={props.label}
     />
   );
