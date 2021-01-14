@@ -68,4 +68,14 @@ exports.division = async (req, res) => {
   }
 };
 
-exports.history = (req, res) => {};
+exports.history = async (req, res) => {
+  try {
+    let rows = await db.execute('SELECT * FROM `history`');
+    let historyArray = [];
+    rows[0].map((row) => historyArray.push(Object.values(row)[1]));
+    res.json({ historyArray });
+  } catch (error) {
+    console.error(error);
+    res.json({ message: error.sqlMessage });
+  }
+};
