@@ -15,7 +15,7 @@ const Calculator = ({ calculate, output, setOutput }) => {
     const value = event.target.value;
     switch (value) {
       case '=': {
-        let [firstValue, secondValue] = input.split(/[+*\/-]/g);
+        let [firstValue, secondValue] = input.split(/[+*/-]/g);
         calculate(operation, firstValue, secondValue);
         break;
       }
@@ -25,11 +25,11 @@ const Calculator = ({ calculate, output, setOutput }) => {
         break;
       }
       default: {
-        if (input.search(/[+*\/-]/g) === -1) {
+        if (input.search(/[+*/-]/g) === -1) {
           setActive(true);
         }
-        if (value.match(/[+*\/-]/g)) {
-          if (input.search(/[+*\/-]/g) === -1) {
+        if (value.match(/[+*/-]/g)) {
+          if (input.search(/[+*/-]/g) === -1) {
             value === '+'
               ? setOperation('add')
               : value === '-'
