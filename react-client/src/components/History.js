@@ -6,7 +6,7 @@ import Pagination from './Pagination';
 const History = ({ history, loading }) => {
   const [currentPage, setCurrentPage] = useState(1);
   let currentOperations = [];
-  const operationsPerPage = 10;
+  const operationsPerPage = 12;
 
   // Get current operation history
   const indexOfLastOperation = currentPage * operationsPerPage;
@@ -34,14 +34,11 @@ const History = ({ history, loading }) => {
   return (
     <div className='container'>
       <ul className='row text-center list-group'>
-        <li className='list-group-item d-flex justify-content-center align-items-center'>
+        <li className='list-group-item list-group-item-action active'>
           <h4>History</h4>
         </li>
         {currentOperations.map((operation, index) => (
-          <li
-            key={index}
-            className='list-group-item d-flex justify-content-center align-items-center'
-          >
+          <li key={index} className='list-group-item list-group-item-action'>
             {operation}
           </li>
         ))}
