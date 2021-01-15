@@ -10,12 +10,17 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState([]);
 
+  let hostAddress = '';
+  if (process.env.NODE_ENV === 'development') {
+    hostAddress = 'http://localhost:5000';
+  }
+
   useEffect(() => {
     const getHistory = async () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `/history?apiKey=${process.env.REACT_APP_API_KEY}`
+          `${hostAddress}/history?apiKey=${process.env.REACT_APP_API_KEY}`
         );
         setHistory(res.data.historyArray.reverse());
         setLoading(false);
@@ -24,12 +29,12 @@ const App = () => {
       }
     };
     getHistory();
-  }, [output]);
+  }, [output, hostAddress]);
 
   const calculate = async (operation, firstValue, secondValue) => {
     try {
       const res = await axios.get(
-        `/${operation}?apiKey=${process.env.REACT_APP_API_KEY}&firstValue=${firstValue}&secondValue=${secondValue}`
+        `${hostAddress}/${operation}?apiKey=${process.env.REACT_APP_API_KEY}&firstValue=${firstValue}&secondValue=${secondValue}`
       );
       setOutput(res.data.result);
     } catch (error) {
