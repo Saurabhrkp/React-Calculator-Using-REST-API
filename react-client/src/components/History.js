@@ -21,8 +21,8 @@ const History = ({ history, loading }) => {
   if (loading) {
     return (
       <div className='container'>
-        <div className='row text-center mx-auto'>
-          <div className='col my-auto'>
+        <div className='row text-center my-5'>
+          <div className='col my-5'>
             <div className='spinner-border'>
               <span className='sr-only'>Loading...</span>
             </div>
@@ -32,7 +32,7 @@ const History = ({ history, loading }) => {
     );
   }
   return (
-    <div className='container'>
+    <div className='container shadow-lg'>
       <ul className='row text-center list-group'>
         <li className='list-group-item list-group-item-action active'>
           <h4>History</h4>

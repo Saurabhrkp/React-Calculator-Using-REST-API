@@ -5,9 +5,10 @@ const IO = (props) => {
     <div className='col col-10'>
       <input
         type='text'
-        className='form-control rounded-0'
+        className='form-control text-right'
         readOnly
         value={props.value || ' '}
+        style={{ fontSize: '1.5em' }}
       />
     </div>
   );

@@ -20,7 +20,7 @@ const Calculator = ({ calculate, output, setOutput }) => {
         calculate(operation, firstValue, secondValue);
         break;
       }
-      case 'Cls': {
+      case 'CLS': {
         setInput('');
         setOutput('');
         break;
@@ -49,39 +49,44 @@ const Calculator = ({ calculate, output, setOutput }) => {
   };
 
   return (
-    <div className='container-fluid card text-white bg-dark mb-3'>
+    <div className='container-fluid card text-white bg-dark mb-3 shadow-lg'>
       <Screen question={input} answer={output} />
-      <div className='container p-4'>
-        <div className='row justify-content-between mx-1'>
-          <Operator label={'Cls'} handleClick={handleClick} active={true} />
+      <div className='container p-2 text-center'>
+        <div className='row justify-content-center'>
+          <input
+            type='button'
+            className='btn btn-warning m-2 p-4 font-weight-bolder col-6'
+            onClick={handleClick}
+            value={'CLS'}
+          />
           <Operator label={'/'} handleClick={handleClick} active={active} />
         </div>
-        <div className='row justify-content-around'>
+        <div className='row justify-content-center'>
           <Number label={'1'} handleClick={handleClick} />
           <Number label={'2'} handleClick={handleClick} />
           <Number label={'3'} handleClick={handleClick} />
           <Operator label={'+'} handleClick={handleClick} active={active} />
         </div>
-        <div className='row justify-content-around'>
+        <div className='row justify-content-center'>
           <Number label={'4'} handleClick={handleClick} />
           <Number label={'5'} handleClick={handleClick} />
           <Number label={'6'} handleClick={handleClick} />
           <Operator label={'-'} handleClick={handleClick} active={active} />
         </div>
-        <div className='row justify-content-around'>
+        <div className='row justify-content-center'>
           <Number label={'7'} handleClick={handleClick} />
           <Number label={'8'} handleClick={handleClick} />
           <Number label={'9'} handleClick={handleClick} />
           <Operator label={'*'} handleClick={handleClick} active={active} />
         </div>
-        <div className='row justify-content-between mx-1'>
+        <div className='row justify-content-center'>
           <Number label={'0'} handleClick={handleClick} />
           <input
             type='button'
             className={
               equal
-                ? 'btn btn-success m-2 p-4 font-weight-bold col-8'
-                : 'btn btn-success m-2 p-4 font-weight-bold col-8 disabled'
+                ? 'btn btn-success m-2 p-4 font-weight-bolder col-6'
+                : 'btn btn-success m-2 p-4 font-weight-bolder col-6 disabled'
             }
             onClick={equal ? handleClick : function () {}}
             value={'='}
