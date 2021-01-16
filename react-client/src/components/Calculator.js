@@ -51,15 +51,9 @@ const Calculator = ({ calculate, output, setOutput }) => {
   return (
     <div className='container-fluid card text-white bg-dark mb-3 shadow-lg'>
       <Screen question={input} answer={output} />
-      <div className='container p-2 text-center'>
+      <div className='container p-2 text-center mb-5'>
         <div className='row justify-content-center'>
-          <input
-            type='button'
-            className='btn btn-warning m-2 p-4 font-weight-bolder col-6'
-            onClick={handleClick}
-            value={'CLS'}
-          />
-          <Operator label={'/'} handleClick={handleClick} active={active} />
+          <div className='col p-4'></div>
         </div>
         <div className='row justify-content-center'>
           <Number label={'1'} handleClick={handleClick} />
@@ -81,16 +75,9 @@ const Calculator = ({ calculate, output, setOutput }) => {
         </div>
         <div className='row justify-content-center'>
           <Number label={'0'} handleClick={handleClick} />
-          <input
-            type='button'
-            className={
-              equal
-                ? 'btn btn-success m-2 p-4 font-weight-bolder col-6'
-                : 'btn btn-success m-2 p-4 font-weight-bolder col-6 disabled'
-            }
-            onClick={equal ? handleClick : function () {}}
-            value={'='}
-          />
+          <Operator label={'CLS'} handleClick={handleClick} active={true} />
+          <Operator label={'='} handleClick={handleClick} active={equal} />
+          <Operator label={'/'} handleClick={handleClick} active={active} />
         </div>
       </div>
     </div>
