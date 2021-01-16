@@ -32,9 +32,9 @@ const History = ({ history, loading }) => {
     );
   }
   return (
-    <div className='container shadow-lg'>
-      <ul className='row text-center list-group'>
-        <li className='list-group-item list-group-item-action active'>
+    <div className='container'>
+      <ul className='row text-center list-group shadow-lg'>
+        <li className='list-group-item list-group-item-action active rounded-top'>
           <h4>History</h4>
         </li>
         {currentOperations.map((operation, index) => (

@@ -49,7 +49,7 @@ const Calculator = ({ calculate, output, setOutput }) => {
   };
 
   return (
-    <div className='container-fluid card text-white bg-dark mb-3 shadow-lg'>
+    <div className='container-fluid card text-white bg-dark mb-3 shadow-lg rounded'>
       <Screen question={input} answer={output} />
       <div className='container p-2 text-center mb-5'>
         <div className='row justify-content-center'>
