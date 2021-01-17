@@ -74,8 +74,8 @@ const Calculator = ({ calculate, output, setOutput }) => {
           <Operator label={'*'} handleClick={handleClick} active={active} />
         </div>
         <div className='row justify-content-center'>
-          <Number label={'0'} handleClick={handleClick} />
           <Operator label={'CLS'} handleClick={handleClick} active={true} />
+          <Number label={'0'} handleClick={handleClick} />
           <Operator label={'='} handleClick={handleClick} active={equal} />
           <Operator label={'/'} handleClick={handleClick} active={active} />
         </div>
