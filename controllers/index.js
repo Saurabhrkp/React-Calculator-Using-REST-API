@@ -1,5 +1,16 @@
 const db = require('../database/index');
 
+const saveToDB = async (operation, firstValue, secondValue, result) => {
+  try {
+    const promise = await db.execute(
+      `INSERT INTO \`history\` (\`id\`, \`operation\`) VALUES (NULL, '${firstValue} ${operation} ${secondValue} = ${result}');`
+    );
+    return Promise.resolve(promise);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
 exports.authentication = (req, res, next) => {
   if (req.query.apiKey != process.env.AUTHENTICATION_KEY) {
     return res.json({
@@ -23,9 +34,7 @@ exports.checkForValueInQuery = (req, res, next) => {
 exports.addition = async (req, res) => {
   let result = parseInt(req.query.firstValue) + parseInt(req.query.secondValue);
   try {
-    await db.execute(
-      `INSERT INTO \`history\` (\`id\`, \`operation\`) VALUES (NULL, '${req.query.firstValue} + ${req.query.secondValue} = ${result}');`
-    );
+    await saveToDB('+', req.query.firstValue, req.query.secondValue, result);
     res.json({ result });
   } catch (error) {
     res.json({ message: error.sqlMessage });
@@ -35,9 +44,7 @@ exports.addition = async (req, res) => {
 exports.subtraction = async (req, res) => {
   let result = parseInt(req.query.firstValue) - parseInt(req.query.secondValue);
   try {
-    await db.execute(
-      `INSERT INTO \`history\` (\`id\`, \`operation\`) VALUES (NULL, '${req.query.firstValue} - ${req.query.secondValue} = ${result}');`
-    );
+    await saveToDB('-', req.query.firstValue, req.query.secondValue, result);
     res.json({ result });
   } catch (error) {
     res.json({ message: error.sqlMessage });
@@ -47,9 +54,7 @@ exports.subtraction = async (req, res) => {
 exports.multiplication = async (req, res) => {
   let result = parseInt(req.query.firstValue) * parseInt(req.query.secondValue);
   try {
-    await db.execute(
-      `INSERT INTO \`history\` (\`id\`, \`operation\`) VALUES (NULL, '${req.query.firstValue} * ${req.query.secondValue} = ${result}');`
-    );
+    await saveToDB('*', req.query.firstValue, req.query.secondValue, result);
     res.json({ result });
   } catch (error) {
     res.json({ message: error.sqlMessage });
@@ -59,9 +64,7 @@ exports.multiplication = async (req, res) => {
 exports.division = async (req, res) => {
   let result = parseInt(req.query.firstValue) / parseInt(req.query.secondValue);
   try {
-    await db.execute(
-      `INSERT INTO \`history\` (\`id\`, \`operation\`) VALUES (NULL, '${req.query.firstValue} / ${req.query.secondValue} = ${result}');`
-    );
+    await saveToDB('/', req.query.firstValue, req.query.secondValue, result);
     res.json({ result });
   } catch (error) {
     res.json({ message: error.sqlMessage });
