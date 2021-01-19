@@ -75,8 +75,29 @@ exports.history = async (req, res) => {
   try {
     let rows = await db.execute('SELECT * FROM `history`');
     let historyArray = [];
-    rows[0].map((row) => historyArray.push(Object.values(row)[1]));
+    rows[0].map((row) => historyArray.push(Object.values(row)));
     res.json({ historyArray });
+  } catch (error) {
+    console.error(error);
+    res.json({ message: error.sqlMessage });
+  }
+};
+
+exports.clearAllHistory = async (req, res) => {
+  try {
+    await db.execute('TRUNCATE TABLE `history`');
+    res.json({ message: 'Deleted all operation records' });
+  } catch (error) {
+    console.error(error);
+    res.json({ message: error.sqlMessage });
+  }
+};
+
+exports.deleteById = async (req, res) => {
+  let id = req.query.id;
+  try {
+    await db.execute(`DELETE FROM \`history\` WHERE \`id\`=${id};`);
+    res.json({ message: `Deleted operation by ID: ${id}` });
   } catch (error) {
     console.error(error);
     res.json({ message: error.sqlMessage });

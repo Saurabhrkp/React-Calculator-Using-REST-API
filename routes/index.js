@@ -32,4 +32,16 @@ router.get(
 
 router.get('/history', indexController.authentication, indexController.history);
 
+router.get(
+  '/deleteByID',
+  indexController.authentication,
+  indexController.deleteById
+);
+
+router.get(
+  '/clearHistory',
+  indexController.authentication,
+  indexController.clearAllHistory
+);
+
 module.exports = router;

@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import Pagination from './Pagination';
 
-const History = ({ history, loading }) => {
+const History = ({ history, loading, deleteById }) => {
   const [currentPage, setCurrentPage] = useState(1);
   let currentOperations = [];
   const operationsPerPage = 12;
@@ -37,9 +37,22 @@ const History = ({ history, loading }) => {
         <li className='list-group-item list-group-item-action active rounded-top'>
           <h4>History</h4>
         </li>
-        {currentOperations.map((operation, index) => (
-          <li key={index} className='list-group-item list-group-item-action'>
-            {operation}
+        {currentOperations.map((operation) => (
+          <li
+            key={operation[0]}
+            className='list-group-item list-group-item-action'
+          >
+            {operation[1]}
+            <button
+              type='button'
+              className='close'
+              aria-label='Close'
+              onClick={() => deleteById(operation[0])}
+            >
+              <span className='float-right' aria-hidden='true'>
+                &times;
+              </span>
+            </button>
           </li>
         ))}
       </ul>

@@ -43,6 +43,17 @@ const App = () => {
     }
   };
 
+  const deleteById = async (id) => {
+    try {
+      await axios.get(
+        `${hostAddress}/deleteByID?apiKey=${process.env.REACT_APP_API_KEY}&id=${id}`
+      );
+      setHistory(history.filter((entry) => entry[0] !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className='container'>
       <div className='row mt-5'>
@@ -54,7 +65,11 @@ const App = () => {
           />
         </div>
         <div className='col col-sm-12 col-md-6 col-lg-6'>
-          <History history={history} loading={loading} />
+          <History
+            history={history}
+            loading={loading}
+            deleteById={deleteById}
+          />
         </div>
       </div>
     </div>
