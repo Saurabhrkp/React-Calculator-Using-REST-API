@@ -12,29 +12,29 @@ const saveToDB = async (operation, firstValue, secondValue, result) => {
 };
 
 exports.authentication = (req, res, next) => {
-  if (req.query.apiKey != process.env.AUTHENTICATION_KEY) {
+  if (req.body.apiKey !== process.env.AUTHENTICATION_KEY) {
     return res.json({
-      message: 'Please provide valid API Key as ?apiKey=APIKEY',
+      message: 'Please provide valid API Key as apiKey: APIKEY',
     });
   }
   return next();
 };
 
-exports.checkForValueInQuery = (req, res, next) => {
-  if (req.query.firstValue != null && req.query.secondValue != null) {
+exports.checkForValueInBody = (req, res, next) => {
+  if (req.body.firstValue !== null && req.body.secondValue !== null) {
     return next();
   } else {
     return res.json({
       message:
-        'Provide values for operations as ?firstValue=VALUE&secondValue=VALUE',
+        'Provide values for operations as firstValue: VALUE secondValue: VALUE',
     });
   }
 };
 
 exports.addition = async (req, res) => {
-  let result = parseInt(req.query.firstValue) + parseInt(req.query.secondValue);
+  let result = parseInt(req.body.firstValue) + parseInt(req.body.secondValue);
   try {
-    await saveToDB('+', req.query.firstValue, req.query.secondValue, result);
+    await saveToDB('+', req.body.firstValue, req.body.secondValue, result);
     res.json({ result });
   } catch (error) {
     res.json({ message: error.sqlMessage });
@@ -42,9 +42,9 @@ exports.addition = async (req, res) => {
 };
 
 exports.subtraction = async (req, res) => {
-  let result = parseInt(req.query.firstValue) - parseInt(req.query.secondValue);
+  let result = parseInt(req.body.firstValue) - parseInt(req.body.secondValue);
   try {
-    await saveToDB('-', req.query.firstValue, req.query.secondValue, result);
+    await saveToDB('-', req.body.firstValue, req.body.secondValue, result);
     res.json({ result });
   } catch (error) {
     res.json({ message: error.sqlMessage });
@@ -52,9 +52,9 @@ exports.subtraction = async (req, res) => {
 };
 
 exports.multiplication = async (req, res) => {
-  let result = parseInt(req.query.firstValue) * parseInt(req.query.secondValue);
+  let result = parseInt(req.body.firstValue) * parseInt(req.body.secondValue);
   try {
-    await saveToDB('*', req.query.firstValue, req.query.secondValue, result);
+    await saveToDB('*', req.body.firstValue, req.body.secondValue, result);
     res.json({ result });
   } catch (error) {
     res.json({ message: error.sqlMessage });
@@ -62,9 +62,9 @@ exports.multiplication = async (req, res) => {
 };
 
 exports.division = async (req, res) => {
-  let result = parseInt(req.query.firstValue) / parseInt(req.query.secondValue);
+  let result = parseInt(req.body.firstValue) / parseInt(req.body.secondValue);
   try {
-    await saveToDB('/', req.query.firstValue, req.query.secondValue, result);
+    await saveToDB('/', req.body.firstValue, req.body.secondValue, result);
     res.json({ result });
   } catch (error) {
     res.json({ message: error.sqlMessage });
@@ -94,7 +94,7 @@ exports.clearAllHistory = async (req, res) => {
 };
 
 exports.deleteById = async (req, res) => {
-  let id = req.query.id;
+  let id = req.body.id;
   try {
     await db.execute(`DELETE FROM \`history\` WHERE \`id\`=${id};`);
     res.json({ message: `Deleted operation by ID: ${id}` });
