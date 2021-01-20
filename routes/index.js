@@ -2,43 +2,47 @@ const express = require('express');
 const router = express.Router();
 const indexController = require('../controllers/index');
 
-router.get(
+router.post(
   '/add',
   indexController.authentication,
-  indexController.checkForValueInQuery,
+  indexController.checkForValueInBody,
   indexController.addition
 );
 
-router.get(
+router.post(
   '/subtract',
   indexController.authentication,
-  indexController.checkForValueInQuery,
+  indexController.checkForValueInBody,
   indexController.subtraction
 );
 
-router.get(
+router.post(
   '/multiply',
   indexController.authentication,
-  indexController.checkForValueInQuery,
+  indexController.checkForValueInBody,
   indexController.multiplication
 );
 
-router.get(
+router.post(
   '/divide',
   indexController.authentication,
-  indexController.checkForValueInQuery,
+  indexController.checkForValueInBody,
   indexController.division
 );
 
-router.get('/history', indexController.authentication, indexController.history);
+router.post(
+  '/history',
+  indexController.authentication,
+  indexController.history
+);
 
-router.get(
+router.post(
   '/deleteByID',
   indexController.authentication,
   indexController.deleteById
 );
 
-router.get(
+router.post(
   '/clearHistory',
   indexController.authentication,
   indexController.clearAllHistory
