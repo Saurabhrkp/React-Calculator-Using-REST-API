@@ -38,7 +38,6 @@ const App = () => {
         secondValue: secondValue,
         apiKey: process.env.REACT_APP_API_KEY,
       });
-      console.log(res.data);
       setOutput(res.data.result);
     } catch (error) {
       setOutput(' ');
