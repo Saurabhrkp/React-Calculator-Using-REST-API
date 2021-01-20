@@ -19,9 +19,9 @@ const App = () => {
     const getHistory = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(
-          `${hostAddress}/history?apiKey=${process.env.REACT_APP_API_KEY}`
-        );
+        const res = await axios.post(`${hostAddress}/history`, {
+          apiKey: process.env.REACT_APP_API_KEY,
+        });
         setHistory(res.data.historyArray.reverse());
         setLoading(false);
       } catch (error) {
@@ -33,9 +33,12 @@ const App = () => {
 
   const calculate = async (operation, firstValue, secondValue) => {
     try {
-      const res = await axios.get(
-        `${hostAddress}/${operation}?apiKey=${process.env.REACT_APP_API_KEY}&firstValue=${firstValue}&secondValue=${secondValue}`
-      );
+      const res = await axios.post(`${hostAddress}/${operation}`, {
+        firstValue: firstValue,
+        secondValue: secondValue,
+        apiKey: process.env.REACT_APP_API_KEY,
+      });
+      console.log(res.data);
       setOutput(res.data.result);
     } catch (error) {
       setOutput(' ');
@@ -45,9 +48,10 @@ const App = () => {
 
   const deleteById = async (id) => {
     try {
-      await axios.get(
-        `${hostAddress}/deleteByID?apiKey=${process.env.REACT_APP_API_KEY}&id=${id}`
-      );
+      await axios.post(`${hostAddress}/deleteByID`, {
+        id: id,
+        apiKey: process.env.REACT_APP_API_KEY,
+      });
       setHistory(history.filter((entry) => entry[0] !== id));
     } catch (error) {
       console.error(error);
