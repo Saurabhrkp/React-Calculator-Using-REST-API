@@ -39,30 +39,40 @@ npm run dev
 
 ## REST API Endpoints
 
+For Local development | All endpoints are POST route.
+
+All route require APIKey in body as req.body.apiKey
+All arithmetic operation routes require firstValue, secondValue in body as req.body.firstValue and req.body.secondValue
+Delete By ID route requires id of operation to delete as req.body.id
 
 For Adding numbers:
 ```http
-/add?apiKey=API_KEY&firstValue=NUMBER_1&secondValue=NUMBER_2
+http://localhost:5000/add
 ```
 
 For Subtracting numbers:
 ```http
-/subtract?apiKey=API_KEY&firstValue=NUMBER_1&secondValue=NUMBER_2
+http://localhost:5000/subtract
 ```
 
 For Multipying numbers:
 ```http
-/multiply?apiKey=API_KEY&firstValue=NUMBER_1&secondValue=NUMBER_2
+http://localhost:5000/multiply
 ```
 
 For Dividing numbers:
 ```http
-/divide?apiKey=API_KEY&firstValue=NUMBER_1&secondValue=NUMBER_2
+http://localhost:5000/divide
 ```
 
 For Getting History:
 ```http
-/history?apiKey=API_KEY
+http://localhost:5000/history
+
+```
+For Getting Delete operation by ID:
+```http
+http://localhost:5000/deleteByID
 ```
 
 ---
