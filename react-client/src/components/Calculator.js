@@ -5,7 +5,7 @@ import Screen from './Screen';
 import Number from './Number';
 import Operator from './Operator';
 
-const Calculator = ({ calculate, output, setOutput }) => {
+const Calculator = ({ calculate, output, clearOutput }) => {
   const [active, setActive] = useState(false);
   const [equal, setEqual] = useState(false);
   const [input, setInput] = useState('');
@@ -22,7 +22,7 @@ const Calculator = ({ calculate, output, setOutput }) => {
       }
       case 'CLS': {
         setInput('');
-        setOutput('');
+        clearOutput();
         break;
       }
       default: {
