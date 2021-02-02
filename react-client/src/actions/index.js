@@ -1,0 +1,4 @@
+export const GET_HISTORY = 'GET_HISTORY';
+export const CALCULATE = 'CALCULATE';
+export const CLEAR_SCREEN = 'CLEAR_SCREEN';
+export const DELETE_OPERATION = 'DELETE_OPERATION';
